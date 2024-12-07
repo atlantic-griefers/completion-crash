@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "completion-crash",
+  "version": "${version}",
+  "name": "CompletionCrash",
+  "description": "idk what to put here",
+  "authors": [
+    "maytrixc"
+  ],
+  "contact": {
+    "repo": "https://github.com/atlantic-griefers/completion-crash.git"
+  },
+  "icon": "assets/atg/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "meteor": [
+      "com.atg.addon.Addon"
+    ]
+  },
+  "mixins": [
+    "addon-template.mixins.json"
+  ],
+  "custom": {
+    "meteor-client:color": "255,0,0"
+  },
+  "depends": {
+    "java": ">=21",
+    "minecraft": ["${mc_version}"],
+    "meteor-client": "*"
+  }
+}
