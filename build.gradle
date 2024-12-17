@@ -8,25 +8,11 @@ base {
     group = project.maven_group
 }
 
-repositories {
-    maven {
-        name = "Meteor Dev Releases"
-        url = "https://maven.meteordev.org/releases"
-    }
-    maven {
-        name = "Meteor Dev Snapshots"
-        url = "https://maven.meteordev.org/snapshots"
-    }
-}
-
 dependencies {
     // Fabric
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-    // Meteor
-    modImplementation "meteordevelopment:meteor-client:${project.meteor_version}"
 }
 
 tasks {

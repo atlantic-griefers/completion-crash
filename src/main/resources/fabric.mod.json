@@ -12,20 +12,11 @@
   },
   "icon": "assets/atg/icon.png",
   "environment": "client",
-  "entrypoints": {
-    "meteor": [
-      "com.atg.addon.Addon"
-    ]
-  },
   "mixins": [
-    "addon-template.mixins.json"
+    "completioncrash-mixins.json"
   ],
-  "custom": {
-    "meteor-client:color": "255,0,0"
-  },
   "depends": {
     "java": ">=21",
-    "minecraft": ["${mc_version}"],
-    "meteor-client": "*"
+    "minecraft": ["${mc_version}"]
   }
 }
