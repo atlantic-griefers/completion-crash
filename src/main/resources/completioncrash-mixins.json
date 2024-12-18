@@ -3,7 +3,7 @@
   "package": "com.atg.completion.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "GameMenuScreenMixin"
+    "gameMenuScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -19,7 +19,7 @@ public class SettingsScreen extends Screen {
     protected void init() {
         super.init();
 
-        addDrawableChild(new SliderWidget(80, height/4, 140, 20, Text.literal("crash packets amount"), 5555) {
+        addDrawableChild(new SliderWidget(80, height/4, 140, 20, Text.literal("NOT IMPLEMENTED YET, DOES NOTHING"), -1.3) {
                 @Override
                 protected void updateMessage() {
 
@@ -27,6 +27,7 @@ public class SettingsScreen extends Screen {
 
                 @Override
                 protected void applyValue() {
+
 
                 }
             }

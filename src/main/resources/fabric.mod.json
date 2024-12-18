@@ -3,7 +3,7 @@
   "id": "completion-crash",
   "version": "${version}",
   "name": "CompletionCrash",
-  "description": "idk what to put here",
+  "description": "idk what to put here, please test if it fully works beacuse I am too lazy to test",
   "authors": [
     "maytrixc"
   ],

